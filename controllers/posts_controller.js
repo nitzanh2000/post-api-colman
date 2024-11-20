@@ -24,7 +24,23 @@ const getPostById = async (req, res) => {
   }
 };
 
+const addNewPost = async ({ body: { title, content, sender } }, res) => {
+  const post = {
+    title,
+    content,
+    owner: sender
+  }
+
+  try {
+    await PostModel.create({ post: post });
+    res.send(201);
+  } catch (error) {
+    res.status(400).send(error.message);
+  }
+};
+
 module.exports = {
   getAllPosts,
   getPostById,
+  addNewPost
 };
