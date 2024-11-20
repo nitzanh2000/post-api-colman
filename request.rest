@@ -1,0 +1,12 @@
+
+###
+
+GET http://localhost:3000/posts
+
+###
+
+GET http://localhost:3000/posts?sender=noam
+
+###
+
+GET http://localhost:3000/posts/673e107c377444bb6854fda3
