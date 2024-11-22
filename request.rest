@@ -17,6 +17,6 @@ POST http://localhost:3000/posts
 Content-Type: application/json
 
 {
-"title": "title", "owner": "Shachar", "content": "Shachar try"
+"title": "title", "sender": "Shachar", "content": "Shachar Shemesh"
 }
 
