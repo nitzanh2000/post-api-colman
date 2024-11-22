@@ -9,7 +9,7 @@ GET http://localhost:3000/posts?sender=Shachar
 
 ###
 
-GET http://localhost:3000/posts/673e107c377444bb6854fda3
+GET http://localhost:3000/posts/674040d468c4ec19bd0a54d6
 
 ###
 
@@ -20,3 +20,39 @@ Content-Type: application/json
 "title": "title", "sender": "Shachar", "content": "Shachar Shemesh"
 }
 
+######################### Comments
+
+GET http://localhost:3000/comments
+
+###
+
+GET http://localhost:3000/comments/asdasads
+
+###
+
+GET http://localhost:3000/comments/byPostId/67403fe268c4ec19bd0a54d5
+
+
+###
+
+POST http://localhost:3000/comments 
+Content-Type: application/json
+
+{
+    "postId": "67403fe268c4ec19bd0a54d5",
+    "content": "test",
+    "user": "avi"
+}
+
+###
+
+DELETE http://localhost:3000/comments/674047f92e75ffb9a6c88ec5
+
+###
+
+PUT http://localhost:3000/comments/6740435268c4ec19bd0a54e1 Content-Type: application/json
+
+{
+    "postId": "67403fe268c4ec19bd0a54d5",
+    "content": "firsttttt",
+    "user": "avi"}
