@@ -9,7 +9,7 @@ GET http://localhost:3000/posts?sender=Shachar
 
 ###
 
-GET http://localhost:3000/posts/673e107c377444bb6854fda3
+GET http://localhost:3000/posts/674041769cce17b6c7ac21b8
 
 ###
 
@@ -20,3 +20,11 @@ Content-Type: application/json
 "title": "title", "sender": "Shachar", "content": "Shachar Shemesh"
 }
 
+###
+
+PUT http://localhost:3000/posts/674041769cce17b6c7ac21b8
+Content-Type: application/json
+
+{
+"title": "title", "sender": "Shachar", "content": "Shachar Shemesh update"
+}
