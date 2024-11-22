@@ -1,11 +1,8 @@
 const dotenv = require('dotenv').config();
 const express = require('express')
+const mongoose = require("mongoose");
 const app = express()
 const port = process.env.PORT
-
-app.listen(port, () => {
-    console.log(`The app is listening on port ${port}`);
-  });
 
 mongoose.connect(process.env.DB_CONNECT);
 const db = mongoose.connection;
@@ -18,3 +15,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 const postsRouter = require("./routes/posts_route");
 app.use("/posts", postsRouter);
+
+app.listen(port, () => {
+  console.log(`The app is listening on port ${port}`);
+});
