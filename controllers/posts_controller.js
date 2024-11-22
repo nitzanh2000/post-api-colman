@@ -37,8 +37,30 @@ const addNewPost = async ({ body: { title, sender, content } }, res) => {
   }
 };
 
+const updatePostById = async ( req, res) => {
+  const post = {
+    title : req.body.title,
+    content: req.body.content,
+    owner: req.body.sender
+  }
+  const postId = req.params.id
+
+  try {
+    const result = await PostModel.updateOne({ _id : postId }, post);
+
+    if (result.modifiedCount > 0) {
+      res.status(201).send();
+    } else {
+      throw new Error("Post not found");
+    }
+  } catch (error) {
+    res.status(400).send(error.message);
+  }
+};
+
 module.exports = {
   getAllPosts,
   getPostById,
-  addNewPost
+  addNewPost,
+  updatePostById
 };
