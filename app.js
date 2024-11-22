@@ -3,7 +3,6 @@ const express = require('express')
 const mongoose = require("mongoose");
 const app = express()
 const port = process.env.PORT
-const mongoose = require("mongoose");
 
 mongoose.connect(process.env.DB_CONNECT_LOCAL);
 const db = mongoose.connection;
