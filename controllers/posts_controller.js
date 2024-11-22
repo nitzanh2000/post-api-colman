@@ -24,16 +24,12 @@ const getPostById = async (req, res) => {
   }
 };
 
-const addNewPost = async ({ body: { title, content, sender } }, res) => {
-  const post = {
-    title,
-    content,
-    owner: sender
-  }
+const addNewPost = async ({ body }, res) => {
+  const post = body
 
   try {
-    await PostModel.create({ post: post });
-    res.send(201);
+    await PostModel.create(post);
+    res.status(201);
   } catch (error) {
     res.status(400).send(error.message);
   }
