@@ -26,7 +26,7 @@ GET http://localhost:3000/comments
 
 ###
 
-GET http://localhost:3000/comments/asdasads
+GET http://localhost:3000/comments/67404e9c77e68352216905e2
 
 ###
 
@@ -44,11 +44,12 @@ Content-Type: application/json
 
 ###
 
-DELETE http://localhost:3000/comments/674047f92e75ffb9a6c88ec5
+DELETE http://localhost:3000/comments/674051574498b6d40b76377a
 
 ###
 
-PUT http://localhost:3000/comments/6740435268c4ec19bd0a54e1 Content-Type: application/json
+PUT http://localhost:3000/comments/674051574498b6d40b76377a 
+Content-Type: application/json
 
 {
     "postId": "67403fe268c4ec19bd0a54d5", "content": "firsttttt", "user": "avi"
