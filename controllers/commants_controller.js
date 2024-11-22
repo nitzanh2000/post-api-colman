@@ -11,7 +11,7 @@ const getAllCommnants = async (req, res) => {
 
 const getCommantById = async (req, res) => {
     try {
-        const commentId = req.id;
+        const commentId = req.params.id;
         const commant = await commentsModel.findById(commentId);
         res.send(commant);
       } catch (error) {
@@ -42,12 +42,31 @@ const insertComment = async ({ body: { postId, content, user } }, res) => {
   }
 };
 
-const deleteComment = (postId) => {
-
+const deleteComment = async (req, res) => {
+  try {
+      const commentId = req.params.id;
+      console.log({commentId})
+      await commentsModel.findByIdAndDelete(commentId)
+      res.status(200).send();
+    } catch (error) {
+      res.status(400).send(error.message);
+    }
 }
 
-const updateComment = (postId) => {
+const updateComment = async (req, res) => {
+  try {
+      const commentId = req.params.id;
+      const updatedComment = {
+        postId: req.body.postId,
+        content: req.body.content,
+        user: req.body.user
+    }
 
+      await commentsModel.findByIdAndUpdate(commentId, updatedComment)
+      res.status(200).send();
+    } catch (error) {
+      res.status(400).send(error.message);
+    }
 }
 
 

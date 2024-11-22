@@ -11,9 +11,9 @@ router.get("/byPostId/:postId", commantsController.getCommantsByPostId);
 
 router.post("/", commantsController.insertComment);
 
-router.delete("/:commentId", commantsController.deleteComment);
+router.delete("/:id", commantsController.deleteComment);
 
-router.put("/:commentId", commantsController.updateComment);
+router.put("/:id", commantsController.updateComment);
 
 
 module.exports = router;
