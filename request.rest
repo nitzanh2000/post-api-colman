@@ -5,11 +5,11 @@ GET http://localhost:3000/posts
 
 ###
 
-GET http://localhost:3000/posts?sender=Shachar
+GET http://localhost:3000/posts?sender=677d55ec97bfc1da0b095c5f
 
 ###
 
-GET http://localhost:3000/posts/674040d468c4ec19bd0a54d6
+GET http://localhost:3000/posts/677d566297bfc1da0b095c66
 
 ###
 
@@ -17,7 +17,7 @@ POST http://localhost:3000/posts
 Content-Type: application/json
 
 {
-    "title": "title", "sender": "Shachar", "content": "Shachar Shemesh"
+    "title": "title", "sender": "677d55ec97bfc1da0b095c5f", "content": "Shachar Shemesh"
 }
 
 ######################### Comments
@@ -26,11 +26,16 @@ GET http://localhost:3000/comments
 
 ###
 
-GET http://localhost:3000/comments/674051584498b6d40b76377e
+
+GET http://localhost:3000/comments?user=677d549ebd23a5c623143a64
 
 ###
 
-GET http://localhost:3000/comments/post/67403fe268c4ec19bd0a54d5
+GET http://localhost:3000/comments/677d554ebd23a5c623143a6e
+
+###
+
+GET http://localhost:3000/comments/post/674051584498b6d40b763782
 
 
 ###
@@ -39,7 +44,7 @@ POST http://localhost:3000/comments
 Content-Type: application/json
 
 {
-    "post": "674051584498b6d40b763782", "content": "first", "user": "677d549ebd23a5c623143a64"
+    "post": "674051584498b6d40b763782", "content": "first1", "user": "677d549ebd23a5c623143a64"
 }
 
 ###

@@ -3,15 +3,15 @@ import { CommentModel } from "../models/comments_model";
 import { Comment } from "../dtos/comment";
 
 const getAllComments = async (req: Request, res: Response) => {
-  const userId: string = String(req.query.user) || "";
+  const userId: string = String(req.query.user || "");
 
   try {
     let comments: Comment[];
 
     if (!!userId) {
-      comments = await CommentModel.find({ user: userId }).populate("post");
+      comments = await CommentModel.find({ user: userId }).populate("post", "user");
     } else {
-      comments = await CommentModel.find().populate("post");
+      comments = await CommentModel.find().populate("post", "user");
     }
     res.send(comments);
   } catch (error) {
@@ -23,9 +23,7 @@ const getCommentById = async (req: Request, res: Response) => {
   const commentId: string = req.params.id;
 
   try {
-    const comment: Comment = await CommentModel.findById(commentId).populate(
-      "post"
-    );
+    const comment: Comment = await CommentModel.findById(commentId).populate("post", "user");
     if (!!comment) {
       res.send(comment);
     } else {
@@ -40,7 +38,7 @@ const getCommentsByPostId = async (req: Request, res: Response) => {
   const postId: string = req.params.id;
 
   try {
-    const comments: Comment[] = await CommentModel.find({ postId });
+    const comments: Comment[] = await CommentModel.find({ post: postId });
 
     if (!!comments.length) {
       res.send(comments);
