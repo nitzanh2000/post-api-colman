@@ -18,6 +18,6 @@ router.post("/", addNewPost);
 
 router.put("/:id", updatePostById);
 
-router.put("/:id", deletePostById);
+router.delete("/:id", deletePostById);
 
 module.exports = router;
