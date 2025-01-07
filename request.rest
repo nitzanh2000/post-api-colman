@@ -3,9 +3,11 @@
 
 GET http://localhost:3000/posts
 
+
 ###
 
 GET http://localhost:3000/posts?sender=677d55ec97bfc1da0b095c5f
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NzdkNmEzZWFhZjAwNjI0YjZlZGI1OTgiLCJ1c2VybmFtZSI6Im5pdHphbm4iLCJwYXNzd29yZCI6IjEyMzQiLCJlbWFpbCI6IjEyMzQiLCJpYXQiOjE3MzYyNzQyOTUsImV4cCI6MTczNjI3NTUyOX0.VTnYyTZyJQaxA3e_bbQIQ0LFXSKXG7MPUuHqfcnbvuE
 
 ###
 
@@ -15,6 +17,7 @@ GET http://localhost:3000/posts/677d6c53804f72cb02db352b
 
 POST http://localhost:3000/posts 
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NzdkNmEzZWFhZjAwNjI0YjZlZGI1OTgiLCJ1c2VybmFtZSI6Im5pdHphbm4iLCJwYXNzd29yZCI6IjEyMzQiLCJlbWFpbCI6IjEyMzQiLCJpYXQiOjE3MzYyNzQyOTUsImV4cCI6MTczNjI3NTUyOX0.VTnYyTZyJQaxA3e_bbQIQ0LFXSKXG7MPUuHqfcnbvuE
 
 {
     "title": "title", "sender": "677d55ec97bfc1da0b095c5f", "content": "Shachar Shemesh"
@@ -28,29 +31,29 @@ DELETE http://localhost:3000/posts/677d566297bfc1da0b095c66
 ### Comments
 
 GET http://localhost:3000/comments
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NzdkNmEzZWFhZjAwNjI0YjZlZGI1OTgiLCJ1c2VybmFtZSI6Im5pdHphbm4iLCJwYXNzd29yZCI6IjEyMzQiLCJlbWFpbCI6IjEyMzQiLCJpYXQiOjE3MzYyNzQyOTUsImV4cCI6MTczNjI3NTUyOX0.VTnYyTZyJQaxA3e_bbQIQ0LFXSKXG7MPUuHqfcnbvuE
 
 ###
 
 
 GET http://localhost:3000/comments?user=677d549ebd23a5c623143a64
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NzdkNmEzZWFhZjAwNjI0YjZlZGI1OTgiLCJ1c2VybmFtZSI6Im5pdHphbm4iLCJwYXNzd29yZCI6IjEyMzQiLCJlbWFpbCI6IjEyMzQiLCJpYXQiOjE3MzYyNzQyOTUsImV4cCI6MTczNjI3NTUyOX0.VTnYyTZyJQaxA3e_bbQIQ0LFXSKXG7MPUuHqfcnbvuE
 
 ###
 
 GET http://localhost:3000/comments/677d554ebd23a5c623143a6e
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NzdkNmEzZWFhZjAwNjI0YjZlZGI1OTgiLCJ1c2VybmFtZSI6Im5pdHphbm4iLCJwYXNzd29yZCI6IjEyMzQiLCJlbWFpbCI6IjEyMzQiLCJpYXQiOjE3MzYyNzQyOTUsImV4cCI6MTczNjI3NTUyOX0.VTnYyTZyJQaxA3e_bbQIQ0LFXSKXG7MPUuHqfcnbvuE
 
 ###
 
 GET http://localhost:3000/comments/post/674051584498b6d40b763782
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NzdkNmEzZWFhZjAwNjI0YjZlZGI1OTgiLCJ1c2VybmFtZSI6Im5pdHphbm4iLCJwYXNzd29yZCI6IjEyMzQiLCJlbWFpbCI6IjEyMzQiLCJpYXQiOjE3MzYyNzQyOTUsImV4cCI6MTczNjI3NTUyOX0.VTnYyTZyJQaxA3e_bbQIQ0LFXSKXG7MPUuHqfcnbvuE
 
 
 ###
 
 POST http://localhost:3000/comments 
-Content-Type: application/json
-
-{
-    "post": "674051584498b6d40b763782", "content": "first1", "user": "677d549ebd23a5c623143a64"
-}
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NzdkNmEzZWFhZjAwNjI0YjZlZGI1OTgiLCJ1c2VybmFtZSI6Im5pdHphbm4iLCJwYXNzd29yZCI6IjEyMzQiLCJlbWFpbCI6IjEyMzQiLCJpYXQiOjE3MzYyNzQyOTUsImV4cCI6MTczNjI3NTUyOX0.VTnYyTZyJQaxA3e_bbQIQ0LFXSKXG7MPUuHqfcnbvuE
 
 ###
 
@@ -60,6 +63,7 @@ DELETE http://localhost:3000/comments/674051584498b6d40b763780
 
 PUT http://localhost:3000/comments/674051584498b6d40b763782 
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NzdkNmEzZWFhZjAwNjI0YjZlZGI1OTgiLCJ1c2VybmFtZSI6Im5pdHphbm4iLCJwYXNzd29yZCI6IjEyMzQiLCJlbWFpbCI6IjEyMzQiLCJpYXQiOjE3MzYyNzQyOTUsImV4cCI6MTczNjI3NTUyOX0.VTnYyTZyJQaxA3e_bbQIQ0LFXSKXG7MPUuHqfcnbvuE
 
 {
     "post": "674051584498b6d40b763782", "content": "first", "user": "677d549ebd23a5c623143a64"
@@ -68,16 +72,19 @@ Content-Type: application/json
 ### Users
 
 GET http://localhost:3000/users
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NzdkNmEzZWFhZjAwNjI0YjZlZGI1OTgiLCJ1c2VybmFtZSI6Im5pdHphbm4iLCJwYXNzd29yZCI6IjEyMzQiLCJlbWFpbCI6IjEyMzQiLCJpYXQiOjE3MzYyNzQyOTUsImV4cCI6MTczNjI3NTUyOX0.VTnYyTZyJQaxA3e_bbQIQ0LFXSKXG7MPUuHqfcnbvuE
 
 
 ###
 
 GET http://localhost:3000/users/677d55ec97bfc1da0b095c5f
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NzdkNmEzZWFhZjAwNjI0YjZlZGI1OTgiLCJ1c2VybmFtZSI6Im5pdHphbm4iLCJwYXNzd29yZCI6IjEyMzQiLCJlbWFpbCI6IjEyMzQiLCJpYXQiOjE3MzYyNzQyOTUsImV4cCI6MTczNjI3NTUyOX0.VTnYyTZyJQaxA3e_bbQIQ0LFXSKXG7MPUuHqfcnbvuE
 
 ###
 
 POST http://localhost:3000/users
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NzdkNmEzZWFhZjAwNjI0YjZlZGI1OTgiLCJ1c2VybmFtZSI6Im5pdHphbm4iLCJwYXNzd29yZCI6IjEyMzQiLCJlbWFpbCI6IjEyMzQiLCJpYXQiOjE3MzYyNzQyOTUsImV4cCI6MTczNjI3NTUyOX0.VTnYyTZyJQaxA3e_bbQIQ0LFXSKXG7MPUuHqfcnbvuE
 
 {
     "username": "shachar",
@@ -97,3 +104,26 @@ Content-Type: application/json
 }
 
 ###
+
+
+
+POST http://localhost:3000/auth/register
+Content-Type: application/json
+
+{
+    "username": "nitzann",
+    "password": "1234",
+    "email": "nitzan@gmail.com"
+}
+
+###
+
+###
+
+POST http://localhost:3000/auth/login
+Content-Type: application/json
+
+{
+    "email": "nitzan@gmail.com",
+    "password": "1234"
+}
