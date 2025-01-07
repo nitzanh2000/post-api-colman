@@ -44,7 +44,8 @@ const updateUser = async (req: Request, res: Response) => {
 
   try {
     const result = await UserModel.updateOne({ _id: userId }, updatedUserData);
-    if (!!result.modifiedCount) {
+
+        if (!!result.modifiedCount) {
       res.status(201).send();
     } else {
       res.status(404).send("Cannot find specified user");
