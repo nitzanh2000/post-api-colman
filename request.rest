@@ -9,7 +9,7 @@ GET http://localhost:3000/posts?sender=677d55ec97bfc1da0b095c5f
 
 ###
 
-GET http://localhost:3000/posts/677d566297bfc1da0b095c66
+GET http://localhost:3000/posts/677d6c53804f72cb02db352b
 
 ###
 
