@@ -17,7 +17,7 @@ GET http://localhost:3000/posts/677d6c53804f72cb02db352b
 
 POST http://localhost:3000/posts 
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NzdkNmEzZWFhZjAwNjI0YjZlZGI1OTgiLCJ1c2VybmFtZSI6Im5pdHphbm4iLCJwYXNzd29yZCI6IjEyMzQiLCJlbWFpbCI6IjEyMzQiLCJpYXQiOjE3MzYyNzQyOTUsImV4cCI6MTczNjI3NTUyOX0.VTnYyTZyJQaxA3e_bbQIQ0LFXSKXG7MPUuHqfcnbvuE
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NzdkODExYjk1OGZmYjhiMWFjMDdlMTUiLCJ1c2VybmFtZSI6Im5pdHphbm4iLCJwYXNzd29yZCI6IjEyMzQiLCJlbWFpbCI6IjEyMzQiLCJpYXQiOjE3MzYyNzg4MzAsImV4cCI6MTczNjI4MDA2NH0.Nt3gF_0oHkBwnaIrkS_POPkcrA-3Kc4ZmoKxPY9h6bU
 
 {
     "title": "title", "sender": "677d55ec97bfc1da0b095c5f", "content": "Shachar Shemesh"

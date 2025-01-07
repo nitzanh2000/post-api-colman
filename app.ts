@@ -33,7 +33,5 @@ export const appPromise: Promise<any> = new Promise((resolve) => {
   app.use("/comments", commentsRouter);
   app.use("/users", usersRouter);
 
-  app.listen(port, () => {
-    console.log(`The app is listening on port ${port}`);
-  });
+  resolve(app);  
 });

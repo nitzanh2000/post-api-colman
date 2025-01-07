@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "jest --detectOpenHandles --runInBand --coverage --forceExit",
-    "dev": "nodemon app.ts"
+    "dev": "nodemon server.ts"
   },
   "keywords": [],
   "author": "",

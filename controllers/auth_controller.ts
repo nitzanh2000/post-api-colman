@@ -1,7 +1,7 @@
 import { UserModel } from "../models/user_model";
 import { Request, Response } from "express";
 import { User } from "../dtos/user";
-import { generateAccessToken, generateRefreshToken } from "../utils/auth";
+import { convertUserToPlain, generateAccessToken, generateRefreshToken } from "../utils/auth";
 let refreshTokens: string[] = [];
 
 export const register = async (req: Request, res: Response) => {
@@ -61,10 +61,3 @@ export const logout = (req: Request, res: Response) => {
   res.clearCookie("refreshToken");
   res.status(200).send("Logged out successfully");
 };
-
-export const convertUserToPlain = (user: User): User => ({
-  _id: user._id.toString(),
-  username: user.username,
-  password: user.password,
-  email: user.password,
-});
