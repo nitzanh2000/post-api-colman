@@ -79,6 +79,36 @@ export const swaggerOptions = {
               },
             },
           },
+        }
+      },
+      "/posts/{id}": {
+        get: {
+          summary: "Get post by ID",
+          tags: ["posts"],
+          parameters: [
+            {
+              name: "id",
+              in: "path",
+              required: true,
+              description: "The ID of the post",
+              schema: {
+                type: "string",
+              },
+            },
+          ],
+          responses: {
+            200: {
+              description: "Post found",
+              content: {
+                "application/json": {
+                  schema: { $ref: "#/components/schemas/Post" },
+                },
+              },
+            },
+            404: {
+              description: "Post not found",
+            },
+          },
         },
         delete: {
           summary: "DELETE post by ID",
@@ -99,7 +129,7 @@ export const swaggerOptions = {
               description: "The post deleted",
               content: {
                 "application/json": {
-                  schema: { $ref: "#/components/schemas/post" },
+                  schema: { $ref: "#/components/schemas/Post" },
                 },
               },
             },
@@ -108,14 +138,12 @@ export const swaggerOptions = {
             },
           },
         },
-      },
-      "/posts/{postId}": {
-        get: {
-          summary: "Get post by ID",
+        put: {
+          summary: "Update post by ID",
           tags: ["posts"],
           parameters: [
             {
-              name: "postId",
+              name: "id",
               in: "path",
               required: true,
               description: "The ID of the post",
@@ -124,9 +152,17 @@ export const swaggerOptions = {
               },
             },
           ],
+          requestBody: {
+            required: true,
+            content: {
+              "application/json": {
+                schema: { $ref: "#/components/schemas/Post" },
+              },
+            },
+          },
           responses: {
             200: {
-              description: "Post found",
+              description: "Post updated",
               content: {
                 "application/json": {
                   schema: { $ref: "#/components/schemas/Post" },
@@ -180,13 +216,13 @@ export const swaggerOptions = {
           },
         },
       },
-      "/comments/{commentId}": {
+      "/comments/{id}": {
         get: {
           summary: "Get comment by ID",
           tags: ["comments"],
           parameters: [
             {
-              name: "commentId",
+              name: "id",
               in: "path",
               required: true,
               description: "The ID of the comment",
@@ -214,7 +250,7 @@ export const swaggerOptions = {
           tags: ["comments"],
           parameters: [
             {
-              name: "commentId",
+              name: "id",
               in: "path",
               required: true,
               description: "The ID of the comment",
@@ -250,7 +286,7 @@ export const swaggerOptions = {
           tags: ["comments"],
           parameters: [
             {
-              name: "commentId",
+              name: "id",
               in: "path",
               required: true,
               description: "The ID of the comment",
@@ -274,13 +310,13 @@ export const swaggerOptions = {
           },
         },
       },
-      "/comments/post/{postId}": {
+      "/comments/post/{id}": {
         get: {
           summary: "Get comments by post ID",
           tags: ["comments"],
           parameters: [
             {
-              name: "postId",
+              name: "id",
               in: "path",
               required: true,
               description: "The ID of the post",
@@ -303,6 +339,141 @@ export const swaggerOptions = {
             },
             404: {
               description: "No comments found for the given post",
+            },
+          },
+        },
+      },
+      "/users": {
+        get: {
+          summary: "Get all users",
+          tags: ["users"],
+          responses: {
+            200: {
+              description: "A list of users",
+              content: {
+                "application/json": {
+                  schema: {
+                    type: "array",
+                    items: { $ref: "#/components/schemas/User" },
+                  },
+                },
+              },
+            },
+          },
+        },
+        post: {
+          summary: "Create a new user",
+          tags: ["users"],
+          requestBody: {
+            required: true,
+            content: {
+              "application/json": {
+                schema: { $ref: "#/components/schemas/User" },
+              },
+            },
+          },
+          responses: {
+            201: {
+              description: "User created",
+              content: {
+                "application/json": {
+                  schema: { $ref: "#/components/schemas/User" },
+                },
+              },
+            },
+          },
+        }
+      },
+      "/users/{id}": {
+        get: {
+          summary: "Get user by ID",
+          tags: ["users"],
+          parameters: [
+            {
+              name: "id",
+              in: "path",
+              required: true,
+              description: "The ID of the users",
+              schema: {
+                type: "string",
+              },
+            },
+          ],
+          responses: {
+            200: {
+              description: "User found",
+              content: {
+                "application/json": {
+                  schema: { $ref: "#/components/schemas/User" },
+                },
+              },
+            },
+            404: {
+              description: "User not found",
+            },
+          },
+        },
+        delete: {
+          summary: "DELETE user by ID",
+          tags: ["users"],
+          parameters: [
+            {
+              name: "id",
+              in: "path",
+              required: true,
+              description: "The ID of the user",
+              schema: {
+                type: "string",
+              },
+            },
+          ],
+          responses: {
+            200: {
+              description: "The user deleted",
+              content: {
+                "application/json": {
+                  schema: { $ref: "#/components/schemas/User" },
+                },
+              },
+            },
+            404: {
+              description: "User not found",
+            },
+          },
+        },
+        put: {
+          summary: "Update user by ID",
+          tags: ["users"],
+          parameters: [
+            {
+              name: "id",
+              in: "path",
+              required: true,
+              description: "The ID of the user",
+              schema: {
+                type: "string",
+              },
+            },
+          ],
+          requestBody: {
+            required: true,
+            content: {
+              "application/json": {
+                schema: { $ref: "#/components/schemas/User" },
+              },
+            },
+          },
+          responses: {
+            200: {
+              description: "User updated",
+              content: {
+                "application/json": {
+                  schema: { $ref: "#/components/schemas/User" },
+                },
+              },
+            },
+            404: {
+              description: "User not found",
             },
           },
         },
