@@ -24,6 +24,7 @@ const getCommentById = async (req: Request, res: Response) => {
 
   try {
     const comment: Comment = await CommentModel.findById(commentId).populate("post", "user");
+    
     if (!!comment) {
       res.send(comment);
     } else {
@@ -52,6 +53,7 @@ const getCommentsByPostId = async (req: Request, res: Response) => {
 
 const createComment = async (req: Request, res: Response) => {
   const newComment = req.body;
+  
   try {
     const comment = await CommentModel.create(newComment);
     res.status(201).send(comment);
@@ -65,6 +67,7 @@ const deleteCommentById = async (req: Request, res: Response) => {
 
   try {
     const comment = await CommentModel.deleteOne({ _id: commentId });
+    
     if (!!comment.deletedCount) {
       res.status(200).send("The comment deleted");
     } else {
@@ -75,7 +78,7 @@ const deleteCommentById = async (req: Request, res: Response) => {
   }
 };
 
-const updateComment = async (req: Request, res: Response) => {
+const updateCommentById = async (req: Request, res: Response) => {
   const commentId = req.params.id;
   const updatedComment = req.body;
 
@@ -84,6 +87,7 @@ const updateComment = async (req: Request, res: Response) => {
       { _id: commentId },
       updatedComment
     );
+    
     if (!!result.modifiedCount) {
       res.status(201).send();
     } else {
@@ -99,6 +103,6 @@ export {
   getCommentById,
   getCommentsByPostId,
   createComment,
-  updateComment,
+  updateCommentById,
   deleteCommentById,
 };
