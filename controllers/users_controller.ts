@@ -29,6 +29,7 @@ const getUserById = async (req: Request, res: Response) => {
 
 const createUser = async (req: Request, res: Response) => {
   const newUser: User = req.body;
+  
   try {
     const user: User = await UserModel.create(newUser);
     res.status(201).send(user);
