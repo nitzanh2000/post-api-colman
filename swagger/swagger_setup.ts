@@ -8,24 +8,33 @@ export const swaggerOptions = {
     },
     components: {
       schemas: {
-        Post: {
-          type: "object",
-          properties: {
-            title: { type: "string" },
-            content: { type: "string" },
-            sender: { type: "string" },
+          User: {
+            type: "object",
+            properties: {
+              email: { type: "string" },
+              password: { type: "string" },
+              username: { type: "string" },
+            },
+            required: ["email", "password", "username"],
           },
-          required: ["title", "content", "sender"],
-        },
-        Comment: {
-          type: "object",
-          properties: {
-            content: { type: "string" },
-            user: { type: "string" },
-            post: { $ref: "#/components/schemas/Post" },
+          Post: {
+            type: "object",
+            properties: {
+              title: { type: "string" },
+              content: { type: "string" },
+              user: { $ref: "#/components/schemas/User" }, // Referencing User schema
+            },
+            required: ["title", "content", "user"],
           },
-          required: ["content", "post"],
-        },
+          Comment: {
+            type: "object",
+            properties: {
+              content: { type: "string" },
+              user: { $ref: "#/components/schemas/User" }, // Referencing User schema
+              post: { $ref: "#/components/schemas/Post" }, // Referencing Post schema
+            },
+            required: ["content", "user", "post"],
+          },
       },
     },
     paths: {
@@ -83,14 +92,14 @@ export const swaggerOptions = {
       },
       "/posts/{id}": {
         get: {
-          summary: "Get post by ID",
+          summary: "Get post by id",
           tags: ["posts"],
           parameters: [
             {
               name: "id",
               in: "path",
               required: true,
-              description: "The ID of the post",
+              description: "The id of the post",
               schema: {
                 type: "string",
               },
@@ -111,14 +120,14 @@ export const swaggerOptions = {
           },
         },
         delete: {
-          summary: "DELETE post by ID",
+          summary: "Delete post by id",
           tags: ["posts"],
           parameters: [
             {
               name: "id",
               in: "path",
               required: true,
-              description: "The ID of the post",
+              description: "The id of the post",
               schema: {
                 type: "string",
               },
@@ -139,14 +148,14 @@ export const swaggerOptions = {
           },
         },
         put: {
-          summary: "Update post by ID",
+          summary: "Update post by id",
           tags: ["posts"],
           parameters: [
             {
               name: "id",
               in: "path",
               required: true,
-              description: "The ID of the post",
+              description: "The id of the post",
               schema: {
                 type: "string",
               },
@@ -218,14 +227,14 @@ export const swaggerOptions = {
       },
       "/comments/{id}": {
         get: {
-          summary: "Get comment by ID",
+          summary: "Get comment by id",
           tags: ["comments"],
           parameters: [
             {
               name: "id",
               in: "path",
               required: true,
-              description: "The ID of the comment",
+              description: "The id of the comment",
               schema: {
                 type: "string",
               },
@@ -246,14 +255,14 @@ export const swaggerOptions = {
           },
         },
         put: {
-          summary: "Update comment by ID",
+          summary: "Update comment by id",
           tags: ["comments"],
           parameters: [
             {
               name: "id",
               in: "path",
               required: true,
-              description: "The ID of the comment",
+              description: "The id of the comment",
               schema: {
                 type: "string",
               },
@@ -282,14 +291,14 @@ export const swaggerOptions = {
           },
         },
         delete: {
-          summary: "DELETE comment by ID",
+          summary: "Delete comment by id",
           tags: ["comments"],
           parameters: [
             {
               name: "id",
               in: "path",
               required: true,
-              description: "The ID of the comment",
+              description: "The id of the comment",
               schema: {
                 type: "string",
               },
@@ -312,14 +321,14 @@ export const swaggerOptions = {
       },
       "/comments/post/{id}": {
         get: {
-          summary: "Get comments by post ID",
+          summary: "Get comments by post id",
           tags: ["comments"],
           parameters: [
             {
               name: "id",
               in: "path",
               required: true,
-              description: "The ID of the post",
+              description: "The id of the post",
               schema: {
                 type: "string",
               },
@@ -386,14 +395,14 @@ export const swaggerOptions = {
       },
       "/users/{id}": {
         get: {
-          summary: "Get user by ID",
+          summary: "Get user by id",
           tags: ["users"],
           parameters: [
             {
               name: "id",
               in: "path",
               required: true,
-              description: "The ID of the users",
+              description: "The id of the users",
               schema: {
                 type: "string",
               },
@@ -414,14 +423,14 @@ export const swaggerOptions = {
           },
         },
         delete: {
-          summary: "DELETE user by ID",
+          summary: "Delete user by id",
           tags: ["users"],
           parameters: [
             {
               name: "id",
               in: "path",
               required: true,
-              description: "The ID of the user",
+              description: "The id of the user",
               schema: {
                 type: "string",
               },
@@ -442,14 +451,14 @@ export const swaggerOptions = {
           },
         },
         put: {
-          summary: "Update user by ID",
+          summary: "Update user by id",
           tags: ["users"],
           parameters: [
             {
               name: "id",
               in: "path",
               required: true,
-              description: "The ID of the user",
+              description: "The id of the user",
               schema: {
                 type: "string",
               },
