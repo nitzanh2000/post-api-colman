@@ -4,7 +4,7 @@ import {
   getAllComments,
   getCommentsByPostId,
   createComment,
-  updateComment,
+  updateCommentById,
   deleteCommentById,
 } from "../controllers/commants_controller";
 
@@ -18,7 +18,7 @@ router.get("/post/:id", getCommentsByPostId);
 
 router.post("/", createComment);
 
-router.put("/:id", updateComment);
+router.put("/:id", updateCommentById);
 
 router.delete("/:id", deleteCommentById);
 
