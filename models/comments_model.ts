@@ -3,7 +3,8 @@ import { Comment } from "../dtos/comment";
 
 const commentsSchema = new mongoose.Schema<Comment>({
   user: {
-    type: String,
+    type: mongoose.Types.ObjectId,
+    ref: "users",
     required: true,
   },
   post: {
