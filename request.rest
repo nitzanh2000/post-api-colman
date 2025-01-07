@@ -38,8 +38,8 @@ GET http://localhost:3000/comments/post/67403fe268c4ec19bd0a54d5
 POST http://localhost:3000/comments 
 Content-Type: application/json
 
-{ 
-    "post": "67403fe268c4ec19bd0a54d5", "content": "test", "user": "avi" 
+{
+    "post": "674051584498b6d40b763782", "content": "first", "user": "677d549ebd23a5c623143a64"
 }
 
 ###
@@ -52,5 +52,38 @@ PUT http://localhost:3000/comments/674051584498b6d40b763782
 Content-Type: application/json
 
 {
-    "postId": "67403fe268c4ec19bd0a54d5", "content": "firsttttt", "user": "avi"
+    "post": "674051584498b6d40b763782", "content": "first", "user": "677d549ebd23a5c623143a64"
 }
+
+### Users
+
+GET http://localhost:3000/users
+
+
+###
+
+GET http://localhost:3000/users/677d55ec97bfc1da0b095c5f
+
+###
+
+POST http://localhost:3000/users
+Content-Type: application/json
+
+{
+    "username": "shachar",
+    "password": "123",
+    "email": "shacharsms10@gmail.com"
+}
+
+###
+
+PUT http://localhost:3000/users/677d55ec97bfc1da0b095c5f
+Content-Type: application/json
+
+{
+    "username": "shachar",
+    "password": "123",
+    "email": "shachar@gmail.com"
+}
+
+###
