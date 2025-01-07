@@ -1,5 +1,5 @@
 
-###
+### Posts
 
 GET http://localhost:3000/posts
 
@@ -20,7 +20,8 @@ Content-Type: application/json
     "title": "title", "sender": "677d55ec97bfc1da0b095c5f", "content": "Shachar Shemesh"
 }
 
-######################### Comments
+
+### Comments
 
 GET http://localhost:3000/comments
 
