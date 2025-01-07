@@ -80,6 +80,34 @@ export const swaggerOptions = {
             },
           },
         },
+        delete: {
+          summary: "DELETE post by ID",
+          tags: ["posts"],
+          parameters: [
+            {
+              name: "id",
+              in: "path",
+              required: true,
+              description: "The ID of the post",
+              schema: {
+                type: "string",
+              },
+            },
+          ],
+          responses: {
+            200: {
+              description: "The post deleted",
+              content: {
+                "application/json": {
+                  schema: { $ref: "#/components/schemas/post" },
+                },
+              },
+            },
+            404: {
+              description: "Post not found",
+            },
+          },
+        },
       },
       "/posts/{postId}": {
         get: {
