@@ -1,6 +1,8 @@
+import { User } from "./user";
+
 export type Post = {
   _id: string;
   title: string;
-  owner: string;
+  owner: User;
   content: string;
 };
