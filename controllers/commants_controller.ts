@@ -3,18 +3,15 @@ import { CommentModel } from "../models/comments_model";
 import { Comment } from "../dtos/comment";
 
 const getAllComments = async (req: Request, res: Response) => {
-  const userId: string = String(req.query.user || "");
+  const userId: string = String(req.query.user) || "";
 
   try {
     let comments: Comment[];
 
-    if (userId) {
-      comments = await CommentModel.find({ user: userId }).populate(
-        "post",
-        "user"
-      );
+    if (!!userId) {
+      comments = await CommentModel.find({ user: userId }).populate("post");
     } else {
-      comments = await CommentModel.find().populate("post", "user");
+      comments = await CommentModel.find().populate("post");
     }
     res.send(comments);
   } catch (error) {
@@ -27,10 +24,9 @@ const getCommentById = async (req: Request, res: Response) => {
 
   try {
     const comment: Comment = await CommentModel.findById(commentId).populate(
-      "post",
-      "user"
+      "post"
     );
-    if (comment) {
+    if (!!comment) {
       res.send(comment);
     } else {
       res.status(404).send("Comment not found");
@@ -71,7 +67,7 @@ const deleteCommentById = async (req: Request, res: Response) => {
 
   try {
     const comment = await CommentModel.deleteOne({ _id: commentId });
-    if (comment.deletedCount > 0) {
+    if (!!comment.deletedCount) {
       res.status(200).send("The comment deleted");
     } else {
       res.status(404).send("Comment not found");
@@ -90,7 +86,7 @@ const updateComment = async (req: Request, res: Response) => {
       { _id: commentId },
       updatedComment
     );
-    if (result.modifiedCount > 0) {
+    if (!!result.modifiedCount) {
       res.status(201).send();
     } else {
       res.status(404).send("comment not found");
@@ -103,7 +99,7 @@ const updateComment = async (req: Request, res: Response) => {
 export {
   getAllComments,
   getCommentById,
-  getCommentsByPostId as getCommentByPostId,
+  getCommentsByPostId,
   createComment,
   updateComment,
   deleteCommentById,

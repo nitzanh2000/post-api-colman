@@ -7,7 +7,7 @@ const getAllPosts = async (req: Request, res: Response) => {
     const postOwner: string = String(req.query.postOwner || "");
     let posts: Post[];
 
-    if (postOwner) {
+    if (!!postOwner) {
       posts = await PostModel.find({ owner: postOwner }).populate("owner");
     } else {
       posts = await PostModel.find().populate("owner");
@@ -22,7 +22,7 @@ const getAllPosts = async (req: Request, res: Response) => {
 const getPostById = async ({ params: { id } }: Request, res: Response) => {
   try {
     const post: Post = await PostModel.findById(id).populate("owner");
-    if (post) {
+    if (!!post) {
       res.send(post);
     } else {
       res.status(404).send("Cannot find specified post");
@@ -56,7 +56,7 @@ const updatePost = async ({ params: { id }, body }: Request, res: Response) => {
       updatedPostContent
     ).populate("owner");
 
-    if (result.modifiedCount > 0) {
+    if (!!result.modifiedCount) {
       res.status(201).send();
     } else {
       res.status(404).send("Cannot find specified post");
