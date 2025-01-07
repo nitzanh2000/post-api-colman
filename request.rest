@@ -26,11 +26,11 @@ GET http://localhost:3000/comments
 
 ###
 
-GET http://localhost:3000/comments/67404e9c77e68352216905e2
+GET http://localhost:3000/comments/674051584498b6d40b76377e
 
 ###
 
-GET http://localhost:3000/comments/byPostId/67403fe268c4ec19bd0a54d5
+GET http://localhost:3000/comments/post/67403fe268c4ec19bd0a54d5
 
 
 ###
@@ -39,16 +39,16 @@ POST http://localhost:3000/comments
 Content-Type: application/json
 
 { 
-    "postId": "67403fe268c4ec19bd0a54d5", "content": "test", "user": "avi" 
+    "post": "67403fe268c4ec19bd0a54d5", "content": "test", "user": "avi" 
 }
 
 ###
 
-DELETE http://localhost:3000/comments/674051574498b6d40b76377a
+DELETE http://localhost:3000/comments/674051584498b6d40b763780
 
 ###
 
-PUT http://localhost:3000/comments/674051574498b6d40b76377a 
+PUT http://localhost:3000/comments/674051584498b6d40b763782 
 Content-Type: application/json
 
 {

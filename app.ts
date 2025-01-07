@@ -1,8 +1,8 @@
-const dotenv = require('dotenv').config();
-const express = require('express')
+const dotenv = require("dotenv").config();
+const express = require("express");
 const mongoose = require("mongoose");
-const app = express()
-const port = process.env.PORT
+const app = express();
+const port = process.env.PORT;
 
 mongoose.connect(process.env.DB_CONNECT);
 const db = mongoose.connection;
@@ -19,5 +19,5 @@ app.use("/posts", postsRouter);
 app.use("/comments", commentsRouter);
 
 app.listen(port, () => {
-    console.log(`The app is listening on port ${port}`);
-  });
+  console.log(`The app is listening on port ${port}`);
+});
