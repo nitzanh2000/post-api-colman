@@ -47,7 +47,7 @@ const addNewPost = async ({ body }: Request, res: Response) => {
   }
 };
 
-const updatePost = async ({ params: { id }, body }: Request, res: Response) => {
+const updatePostById = async ({ params: { id }, body }: Request, res: Response) => {
   const updatedPostContent: Post = body;
 
   try {
@@ -65,5 +65,18 @@ const updatePost = async ({ params: { id }, body }: Request, res: Response) => {
     res.status(500).send(error.message);
   }
 };
+const deletePostById = async ({ params: { id } }: Request, res: Response) => {
+  try {
+    const result = await PostModel.deleteOne({ _id: id });
 
-export { getAllPosts, getPostById, addNewPost, updatePost };
+    if (!!result.deletedCount) {
+      res.status(200).send("The post deleted");
+    } else {
+      res.status(404).send("Post not found");
+    }
+  } catch (error) {
+    res.status(500).send(error.message);
+  }
+};
+
+export { getAllPosts, getPostById, addNewPost, updatePostById, deletePostById };

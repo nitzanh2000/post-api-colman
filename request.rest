@@ -20,6 +20,10 @@ Content-Type: application/json
     "title": "title", "sender": "677d55ec97bfc1da0b095c5f", "content": "Shachar Shemesh"
 }
 
+###
+
+DELETE http://localhost:3000/posts/677d566297bfc1da0b095c66
+
 
 ### Comments
 

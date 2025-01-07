@@ -3,8 +3,10 @@ import {
   getAllPosts,
   getPostById,
   addNewPost,
-  updatePost,
-} from "../controllers/posts_controller";
+  updatePostById,
+  deletePostById,
+}
+  from "../controllers/posts_controller";
 
 const router = express.Router();
 
@@ -14,6 +16,8 @@ router.get("/:id", getPostById);
 
 router.post("/", addNewPost);
 
-router.put("/:id", updatePost);
+router.put("/:id", updatePostById);
+
+router.put("/:id", deletePostById);
 
 module.exports = router;
