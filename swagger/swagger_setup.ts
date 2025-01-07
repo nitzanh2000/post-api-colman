@@ -8,33 +8,33 @@ export const swaggerOptions = {
     },
     components: {
       schemas: {
-          User: {
-            type: "object",
-            properties: {
-              email: { type: "string" },
-              password: { type: "string" },
-              username: { type: "string" },
-            },
-            required: ["email", "password", "username"],
+        User: {
+          type: "object",
+          properties: {
+            email: { type: "string" },
+            password: { type: "string" },
+            username: { type: "string" },
           },
-          Post: {
-            type: "object",
-            properties: {
-              title: { type: "string" },
-              content: { type: "string" },
-              user: { $ref: "#/components/schemas/User" }, // Referencing User schema
-            },
-            required: ["title", "content", "user"],
+          required: ["email", "password", "username"],
+        },
+        Post: {
+          type: "object",
+          properties: {
+            title: { type: "string" },
+            content: { type: "string" },
+            user: { $ref: "#/components/schemas/User" }, // Referencing User schema
           },
-          Comment: {
-            type: "object",
-            properties: {
-              content: { type: "string" },
-              user: { $ref: "#/components/schemas/User" }, // Referencing User schema
-              post: { $ref: "#/components/schemas/Post" }, // Referencing Post schema
-            },
-            required: ["content", "user", "post"],
+          required: ["title", "content", "user"],
+        },
+        Comment: {
+          type: "object",
+          properties: {
+            content: { type: "string" },
+            user: { $ref: "#/components/schemas/User" }, // Referencing User schema
+            post: { $ref: "#/components/schemas/Post" }, // Referencing Post schema
           },
+          required: ["content", "user", "post"],
+        },
       },
     },
     paths: {
@@ -88,7 +88,7 @@ export const swaggerOptions = {
               },
             },
           },
-        }
+        },
       },
       "/posts/{id}": {
         get: {
@@ -352,6 +352,92 @@ export const swaggerOptions = {
           },
         },
       },
+      "/auth/register": {
+        post: {
+          summary: "Register new user",
+          tags: ["auth"],
+          requestBody: {
+            required: true,
+            content: {
+              "application/json": {
+                schema: { $ref: "#/components/schemas/User" },
+              },
+            },
+          },
+          responses: {
+            201: {
+              description: "User created",
+              content: {
+                "application/json": {
+                  schema: { $ref: "#/components/schemas/User" },
+                },
+              },
+            },
+          },
+        },
+      },
+      "/auth/login": {
+        post: {
+          summary: "Get jwt token",
+          tags: ["auth"],
+          requestBody: {
+            required: true,
+            content: {
+              "application/json": {
+                schema: {
+                  type: "object",
+                  properties: {
+                    email: { type: "string" },
+                    password: { type: "string" },
+                  },
+                  required: ["email", "password"],
+                },
+              },
+            },
+          },
+        },
+        responses: {
+          201: {
+            description: "User created",
+            content: {
+              "application/json": {
+                schema: { $ref: "#/components/schemas/User" },
+              },
+            },
+          },
+        },
+      },
+      "/auth/logout": {
+        post: {
+          summary: "Get jwt token",
+          tags: ["auth"],
+          requestBody: {
+            required: true,
+            content: {
+              "application/json": {
+                schema: {
+                  type: "object",
+                  properties: {
+                    email: { type: "string" },
+                    password: { type: "string" },
+                  },
+                  required: ["email", "password"],
+                },
+              },
+            },
+          },
+        },
+        responses: {
+          201: {
+            description: "User created",
+            content: {
+              "application/json": {
+                schema: { $ref: "#/components/schemas/User" },
+              },
+            },
+          },
+        },
+      },
       "/users": {
         get: {
           summary: "Get all users",
@@ -391,7 +477,7 @@ export const swaggerOptions = {
               },
             },
           },
-        }
+        },
       },
       "/users/{id}": {
         get: {
