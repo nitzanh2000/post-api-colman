@@ -34,7 +34,7 @@ beforeAll(async () => {
     generateAccessToken(
       convertUserToJwtInfo(await UserModel.findOne({ email: authUser.email })),
       process.env.ACCESS_TOKEN_SECRET,
-      process.env.TOKEN_EXPIRATION
+      process.env.ACCESS_TOKEN_EXPIRATION
     );
 });
 
