@@ -6,7 +6,7 @@ import { UserModel } from "../models/user_model";
 import {
   convertUserToJwtInfo,
   generateAccessToken,
-  generateRefreshToken
+  generateRefreshToken,
 } from "../utils/auth";
 
 export const register = async (req: Request, res: Response) => {
@@ -57,23 +57,34 @@ export const login = async (req: Request, res: Response) => {
   }
 };
 
-export const logout = (req: Request, res: Response) => {
+export const logout = (req: Request, res: Response): void => {
+  console.log("ASdasdas");
   const refreshToken = req.headers.authorization?.split(" ")?.[1];
-  if (!refreshToken) return res.status(401).send("No refresh token provided");
+  if (!refreshToken) {
+    res.status(401).send("No refresh token provided");
+    return;
+  }
 
   jwt.verify(
     refreshToken,
     process.env.REFRESH_TOKEN_SECRET,
     async (err, userInfo: User) => {
-      if (err) return res.status(403).send("Unauthorized");
+      if (err) {
+        res.status(403).send("Unauthorized");
+        return;
+      }
       const userId = userInfo._id;
       try {
         const user = await UserModel.findById(userId);
-        if (user == null) return res.status(403).send("Unauthorized");
+        if (user == null) {
+          res.status(403).send("Unauthorized");
+          return;
+        }
         if (!user.tokens.includes(refreshToken)) {
           user.tokens = [];
           await user.save();
-          return res.status(403).send("Unauthorized");
+          res.status(403).send("Unauthorized");
+          return;
         }
         user.tokens = user.tokens.filter((token) => token !== refreshToken);
         await user.save();
@@ -88,22 +99,32 @@ export const logout = (req: Request, res: Response) => {
 export const refreshToken = async (req: Request, res: Response) => {
   const authHeaders = req.headers.authorization;
   const token = authHeaders && authHeaders.split(" ")[1];
-  if (token == null) return res.sendStatus(401);
+  if (token == null) {
+    res.sendStatus(401);
+    return;
+  }
 
   jwt.verify(
     token,
     process.env.REFRESH_TOKEN_SECRET,
     async (err, userInfo: User) => {
-      if (err) return res.status(403).send("Unauthorized");
+      if (err) {
+        res.status(403).send("Unauthorized");
+        return;
+      }
 
       const userId = userInfo._id;
       try {
         const user = await UserModel.findById(userId);
-        if (user == null) return res.status(403).send("Unauthorized");
+        if (user == null) {
+          res.status(403).send("Unauthorized");
+          return;
+        }
         if (!user.tokens.includes(token)) {
           user.tokens = [];
           await user.save();
-          return res.status(403).send("Unauthorized");
+          res.status(403).send("Unauthorized");
+          return;
         }
 
         const accessToken = generateAccessToken(
