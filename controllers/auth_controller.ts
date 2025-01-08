@@ -40,12 +40,12 @@ export const login = async (req: Request, res: Response) => {
     const accessToken = generateAccessToken(
       convertUserToJwtInfo(user),
       process.env.ACCESS_TOKEN_SECRET,
-      process.env.ACCESS_ACCESS_TOKEN_EXPIRATION
+      process.env.ACCESS_TOKEN_EXPIRATION
     );
     const refreshToken = generateRefreshToken(
       convertUserToJwtInfo(user),
       process.env.REFRESH_TOKEN_SECRET,
-      process.env.REFRESH_ACCESS_TOKEN_EXPIRATION
+      process.env.REFRESH_TOKEN_EXPIRATION
     );
 
     user.tokens = user.tokens ? [...user.tokens, refreshToken] : [refreshToken];
@@ -109,12 +109,12 @@ export const refreshToken = async (req: Request, res: Response) => {
         const accessToken = generateAccessToken(
           convertUserToJwtInfo(user),
           process.env.ACCESS_TOKEN_SECRET,
-          process.env.ACCESS_ACCESS_TOKEN_EXPIRATION
+          process.env.ACCESS_TOKEN_EXPIRATION
         );
         const refreshToken = generateRefreshToken(
           convertUserToJwtInfo(user),
           process.env.REFRESH_TOKEN_SECRET,
-          process.env.REFRESH_ACCESS_TOKEN_EXPIRATION
+          process.env.REFRESH_TOKEN_EXPIRATION
         );
 
         user.tokens[user.tokens.indexOf(token)] = refreshToken;
