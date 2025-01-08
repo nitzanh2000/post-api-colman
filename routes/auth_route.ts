@@ -5,10 +5,10 @@ const router = express.Router();
 
 router.post("/login", login);
 
-router.post("/logout", void logout);
+router.post("/logout", () => void logout);
 
 router.post("/register", register);
 
-router.post("/refresh-token", void refreshToken);
+router.post("/refresh-token", () => void refreshToken);
 
 module.exports = router;
