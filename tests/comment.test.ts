@@ -77,7 +77,7 @@ describe("Comments", () => {
     expect(res.statusCode).toEqual(200);
   });
 
-  test("Get All Comments By User", async () => {
+  test("Get All Comments By User - Successfully", async () => {
     await CommentModel.create(comment);
 
     const res = await request(await appPromise)
@@ -87,7 +87,7 @@ describe("Comments", () => {
     expect(res.statusCode).toEqual(200);
   });
 
-  test("Get Comment by ID", async () => {
+  test("Get Comment by ID - Successfully", async () => {
     const commentId = (await CommentModel.create(comment))._id;
 
     const res = await request(await appPromise, { headers })
@@ -100,7 +100,15 @@ describe("Comments", () => {
     expect({ post: post._id, user, content }).toEqual(comment);
   });
 
-  test("Get Comment by Post ID", async () => {
+  test("Get Comment by ID - Not Found", async () => {
+    const res = await request(await appPromise, { headers })
+      .get(`/comments/${new mongoose.Types.ObjectId().toString()}`)
+      .set(headers);
+
+    expect(res.statusCode).toEqual(404);
+  });
+
+  test("Get Comment by Post ID - Successfully", async () => {
     await CommentModel.create(comment);
 
     const res = await request(await appPromise, { headers })
@@ -108,6 +116,14 @@ describe("Comments", () => {
       .set(headers);
 
     expect(res.statusCode).toEqual(200);
+  });
+
+  test("Get Comment by Post ID - Not Found", async () => {
+    const res = await request(await appPromise, { headers })
+      .get(`/comments/post/${new mongoose.Types.ObjectId().toString()}`)
+      .set(headers);
+
+    expect(res.statusCode).toEqual(404);
   });
 
   test("Create Comment", async () => {
@@ -126,7 +142,7 @@ describe("Comments", () => {
   });
 
 
-  test("Update Comment", async () => {
+  test("Update Comment - Successfully", async () => {
     const commentId = (await CommentModel.create(comment))._id;
 
     const res = await request(await appPromise, { headers })
@@ -141,7 +157,16 @@ describe("Comments", () => {
       .toEqual({ content: "content2", user: comment.user, post: comment.post });
   });
 
-  test("Delete Comment", async () => {
+  test("Update Comment - Not Found", async () => {
+    const res = await request(await appPromise, { headers })
+      .put(`/comments/${new mongoose.Types.ObjectId().toString()}`)
+      .set(headers)
+      .send({ content: "content2" });
+
+    expect(res.statusCode).toEqual(404);
+  });
+
+  test("Delete Comment - Successfully", async () => {
     const commentId = (await CommentModel.create(comment))._id;
 
     const res = await request(await appPromise, { headers })
@@ -152,5 +177,13 @@ describe("Comments", () => {
 
     const commentDB = await CommentModel.findOne({ _id: commentId });
     expect(commentDB).toBeNull();
+  });
+
+  test("Delete Comment - Not Found", async () => {
+    const res = await request(await appPromise, { headers })
+      .delete(`/comments/${new mongoose.Types.ObjectId().toString()}`)
+      .set(headers);
+
+    expect(res.statusCode).toEqual(404);
   });
 });
