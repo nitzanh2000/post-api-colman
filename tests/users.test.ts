@@ -64,10 +64,14 @@ describe("Users", () => {
   });
 
   test("Get User by ID - Successfully", async () => {
+    await UserModel.create(user);
+    const id = (await UserModel.findOne({ email: user.email }))._id;
     const res = await request(await appPromise, { headers })
-      .get("/users/" + new mongoose.Types.ObjectId().toString())
+      .get("/users/" + id)
       .set(headers);
-    expect(res.statusCode).toEqual(404);
+      expect(res.statusCode).toEqual(200);
+      const { email, password, username } = res.body;
+      expect({ email, password, username }).toEqual(user);
   });
 
   test("Get User by ID Not Found", async () => {
