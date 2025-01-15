@@ -28,7 +28,7 @@ const headers = { authorization: "" };
 
 beforeAll(async () => {
   await appPromise;
-  const a = await UserModel.create(authUser);
+  await UserModel.create(authUser);
   headers.authorization =
     "Bearer " +
     generateAccessToken(
@@ -58,7 +58,7 @@ describe("Posts", () => {
     expect(res.statusCode).toEqual(200);
   });
 
-  test("Get Post by ID", async () => {
+  test("Get Post by ID - Successfully", async () => {
     await PostModel.create(post);
     const id = (await PostModel.findOne({ owner: post.owner }))._id;
     const res = await request(await appPromise, { headers })
@@ -67,6 +67,14 @@ describe("Posts", () => {
     expect(res.statusCode).toEqual(200);
     const { title, owner, content } = res.body;
     expect({ title, owner: owner._id, content }).toEqual(post);
+  });
+
+  test("Get Post by ID - Not Found", async () => {
+    const id = new mongoose.Types.ObjectId().toString();
+    const res = await request(await appPromise, { headers })
+      .get("/posts/"+ id)
+      .set(headers);
+    expect(res.statusCode).toEqual(404);
   });
 
   test("Create Post", async () => {
@@ -92,7 +100,7 @@ describe("Posts", () => {
     }).toEqual(post);
   });
 
-  test("Update Post", async () => {
+  test("Update Post - Successfully", async () => {
     await PostModel.create(post);
     const id = (await PostModel.findOne({ owner: post.owner }))._id;
 
@@ -111,7 +119,16 @@ describe("Posts", () => {
     });
   });
 
-  test("Delete Post", async () => {
+  test("Update Post - Not Found", async () => {
+    const id = new mongoose.Types.ObjectId().toString();
+    const res = await request(await appPromise, { headers })
+      .put("/posts/" +  id)
+      .set(headers)
+      .send({ title: "title2" });
+    expect(res.statusCode).toEqual(404);
+  });
+
+  test("Delete Post - Successfully", async () => {
     const { _id } = await PostModel.create(post);
 
     const res = await request(await appPromise, { headers })
@@ -122,5 +139,14 @@ describe("Posts", () => {
 
     const user = await PostModel.findById(_id);
     expect(user).toBeNull();
+  });
+
+  test("Delete Post - Not Found", async () => {
+    const id = new mongoose.Types.ObjectId().toString();
+    const res = await request(await appPromise, { headers })
+      .delete("/posts/" + id)
+      .set(headers);
+
+    expect(res.statusCode).toEqual(404);
   });
 });
