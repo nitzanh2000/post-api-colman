@@ -55,7 +55,7 @@ afterEach(async () => {
 });
 
 describe("Users", () => {
-  test("Get Many Students", async () => {
+  test("Get Many Users", async () => {
     await UserModel.create(users);
     const res = await request(await appPromise)
       .get("/users")
@@ -63,15 +63,22 @@ describe("Users", () => {
     expect(res.statusCode).toEqual(200);
   });
 
-  test("Get User by ID", async () => {
+  test("Get User by ID - Successfully", async () => {
     await UserModel.create(user);
     const id = (await UserModel.findOne({ email: user.email }))._id;
     const res = await request(await appPromise, { headers })
       .get("/users/" + id)
       .set(headers);
-    expect(res.statusCode).toEqual(200);
-    const { email, password, username } = res.body;
-    expect({ email, password, username }).toEqual(user);
+      expect(res.statusCode).toEqual(200);
+      const { email, password, username } = res.body;
+      expect({ email, password, username }).toEqual(user);
+  });
+
+  test("Get User by ID Not Found", async () => {
+    const res = await request(await appPromise, { headers })
+      .get("/users/" + new mongoose.Types.ObjectId().toString())
+      .set(headers);
+    expect(res.statusCode).toEqual(404);
   });
 
   test("Create User", async () => {
@@ -97,7 +104,7 @@ describe("Users", () => {
     }).toEqual(user);
   });
 
-  test("Update User", async () => {
+  test("Update User - Successfully", async () => {
     await UserModel.create(user);
     const id = (await UserModel.findOne({ email: user.email }))._id;
 
@@ -116,7 +123,22 @@ describe("Users", () => {
     });
   });
 
-  test("Delete User", async () => {
+  test("Update User - Not Found", async () => {
+    const res = await request(await appPromise, { headers })
+      .put("/users/" + new mongoose.Types.ObjectId().toString())
+      .set(headers)
+      .send({ username: "test2" });
+    expect(res.statusCode).toEqual(404);
+  });
+
+  test("Delete User - Not Found", async () => {
+    const res = await request(await appPromise, { headers })
+      .delete("/users/" + new mongoose.Types.ObjectId().toString())
+      .set(headers);
+    expect(res.statusCode).toEqual(404);
+  });
+
+  test("Delete User  - Successfully", async () => {
     await UserModel.create(user);
     const id = (await UserModel.findOne({ email: user.email }))._id;
 

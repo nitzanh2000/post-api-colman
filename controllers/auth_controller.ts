@@ -58,7 +58,6 @@ export const login = async (req: Request, res: Response) => {
 };
 
 export const logout = (req: Request, res: Response): void => {
-  console.log("ASdasdas");
   const refreshToken = req.headers.authorization?.split(" ")?.[1];
   if (!refreshToken) {
     res.status(401).send("No refresh token provided");
